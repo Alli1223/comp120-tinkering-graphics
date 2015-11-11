@@ -1,0 +1,266 @@
+import sys
+import time
+
+
+def start():
+  #load image from file
+  canvasimage=makePicture("G:\Comp120\JES\Ship-image-structure\ship+biodomes.jpg")
+  show(canvasimage)
+  #get input from user
+  keypress = requestNumber("Press 1 for biodome or 2 for ship: ")
+  #if the user entered 1 then zoom into the top section of the image
+  #if the user enters 2(or anything else) zoom into the bottom part of the image
+  if keypress == 1:
+    EnlargeImageTopSection()
+  elif keypress == 2:
+    EnlargeImageBottomSection()
+
+
+
+def EnlargeImageTopSection():
+  #get the image and then make an empty image 
+  file=("G:\Comp120\JES\Ship-image-structure\ship+biodomes.jpg")
+  canvas = makeEmptyPicture(2652,1396)
+  canvas2 = makeEmptyPicture(2652,1396)
+  src=makePicture(file)
+  
+  #Display the image in the empty image
+  canvas = src
+  
+  #get pixels at source X
+  #paste horizontal pixels from pixel 100 to pixel 2000
+  #get pixels at source Y
+  #paste vertical pixels from pixel 100 to pixel 1000
+  #scale up by 60%
+  
+  
+  
+  sourceX = 782
+  for targetX in range (10,2000):
+    sourceY = 292
+    for targetY in range(100,1000):
+      srcpx = getPixel(src,int(sourceX),int(sourceY))
+      color = getColor(srcpx)
+      setColor(getPixel(canvas2,targetX,targetY), color)
+      sourceY = sourceY + 0.6
+    sourceX = sourceX + 0.6
+  
+  
+  #load the biodome image and display it on the canvas
+  pic2=makePicture("G:\Comp120\JES\Ship-image-structure\Biodome.jpg")
+  for pixel in pic2.getPixels():
+    x = getX(pixel)
+    y = getY(pixel)
+    color = getColor(pixel)
+    target = getPixelAt(canvas2, x, y)
+    setColor(target, color)
+  repaint(canvas2)
+  
+  #get user number input and store in variable
+  #if the variable is equal to 1 paint the canvas black then load image from file and paint to canvas
+  #if the variable is equal to 2 paint the canvas black then load image from file and paint to canvas
+  #if the variable is equal to 3 paint the canvas black then load image from file and paint to canvas
+  #if the variable is equal to 4 paint the canvas black then load image from file and paint to canvas
+def paintblack(canvas2):
+  pixels = getPixels(canvas2)
+  for i in range(0*(len(pixels)/4),len(pixels)):
+    px = pixels[i]
+    setColor(px,black)
+  repaint(canvas2)
+  
+  
+  keypress2 = requestNumber("Press 1-4 for ship images: ")
+  if keypress2 == 1:
+  
+    paintblack(canvas2)
+  
+    pic2=makePicture(pickAFile())
+    for pixel in pic2.getPixels():
+      x = getX(pixel)
+      y = getY(pixel)
+      color = getColor(pixel)
+      target = getPixelAt(canvas2, x, y)
+      setColor(target, color)
+    repaint(canvas2)
+  
+  
+  elif keypress2 == 2:
+  
+    pixels = getPixels(canvas2)
+    for i in range(0*(len(pixels)/4),len(pixels)):
+      px = pixels[i]
+      setColor(px,black)
+    repaint(canvas2)
+  
+    pic2=makePicture(pickAFile())
+    for pixel in pic2.getPixels():
+      x = getX(pixel)
+      y = getY(pixel)
+      color = getColor(pixel)
+      target = getPixelAt(canvas2, x, y)
+      setColor(target, color)
+    repaint(canvas2)
+  
+  elif keypress2 == 3:
+  
+    pixels = getPixels(canvas2)
+    for i in range(0*(len(pixels)/4),len(pixels)):
+      px = pixels[i]
+      setColor(px,black)
+    repaint(canvas2)
+  
+    pic2=makePicture(pickAFile())
+    for pixel in pic2.getPixels():
+      x = getX(pixel)
+      y = getY(pixel)
+      color = getColor(pixel)
+      target = getPixelAt(canvas2, x, y)
+      setColor(target, color)
+    repaint(canvas2)
+    
+  else:
+    pixels = getPixels(canvas2)
+    for i in range(0*(len(pixels)/4),len(pixels)):
+      px = pixels[i]
+      setColor(px,black)
+    repaint(canvas2)
+  
+    pic2=makePicture(pickAFile())
+    for pixel in pic2.getPixels():
+      x = getX(pixel)
+      y = getY(pixel)
+      color = getColor(pixel)
+      target = getPixelAt(canvas2, x, y)
+      setColor(target, color)
+    repaint(canvas2)
+
+def EnlargeImageBottomSection():
+  file=("G:\Comp120\JES\Ship-image-structure\ship+biodomes.jpg")
+  canvas = makeEmptyPicture(2652,1396)
+  canvas2 = makeEmptyPicture(2652,1396)
+  src=makePicture(file)
+  
+  canvas = src
+  #show(canvas)
+  
+  sourceX = 160
+  for targetX in range(100,2000):
+    sourceY = 600
+    for targetY in range(100,1000):
+      srcpx = getPixel(src,int(sourceX),int(sourceY))
+      color = getColor(srcpx)
+      setColor(getPixel(canvas2,targetX,targetY), color)
+      sourceY = sourceY + 0.6
+    sourceX = sourceX + 0.6
+  repaint(canvas2)
+  
+  
+  pixels = getPixels(canvas2)
+  for i in range(0*(len(pixels)/4),len(pixels)):
+    px = pixels[i]
+    setColor(px,black)
+  repaint(canvas2)
+  
+  pic2=makePicture("G:\Comp120\JES\Ship-image-structure\spaceship.jpg")
+  for pixel in pic2.getPixels():
+    x = getX(pixel)
+    y = getY(pixel)
+    color = getColor(pixel)
+    target = getPixelAt(canvas2, x, y)
+    setColor(target, color)
+  repaint(canvas2)
+  
+  keypress2 = requestNumber("Press 1-4 for ship images: ")
+  
+  if keypress2 == 1:
+  
+    pixels = getPixels(canvas2)
+    for i in range(0*(len(pixels)/4),len(pixels)):
+      px = pixels[i]
+      setColor(px,black)
+    repaint(canvas2)
+  
+    pic3=makePicture(pickAFile())
+    for pixel in pic3.getPixels():
+      x = getX(pixel)
+      y = getY(pixel)
+      color = getColor(pixel)
+      target = getPixelAt(canvas2, x, y)
+      setColor(target, color)
+    repaint(canvas2)
+  
+  
+  
+  elif keypress2 == 2:
+  
+    pixels = getPixels(canvas2)
+    for i in range(0*(len(pixels)/4),len(pixels)):
+      px = pixels[i]
+      setColor(px,black)
+    repaint(canvas2)
+  
+    pic2=makePicture(pickAFile())
+    for pixel in pic2.getPixels():
+      x = getX(pixel)
+      y = getY(pixel)
+      color = getColor(pixel)
+      target = getPixelAt(canvas2, x, y)
+      setColor(target, color)
+    repaint(canvas2)
+  
+  elif keypress2 == 3:
+  
+    pixels = getPixels(canvas2)
+    for i in range(0*(len(pixels)/4),len(pixels)):
+      px = pixels[i]
+      setColor(px,black)
+    repaint(canvas2)
+    
+    pic2=makePicture(pickAFile())
+    for pixel in pic2.getPixels():
+      x = getX(pixel)
+      y = getY(pixel)
+      color = getColor(pixel)
+      target = getPixelAt(canvas2, x, y)
+      setColor(target, color)
+    repaint(canvas2)
+    
+    #reduceRed and increase red
+    for p in getPixels(pic2):
+      value = getRed(p)
+      setRed(p,value /4)
+    canvas2 = pic2
+    repaint(canvas2)
+    
+  elif keypress2 == 4:
+    pixels = getPixels(canvas2)
+    for i in range(0*(len(pixels)/4),len(pixels)):
+      px = pixels[i]
+      setColor(px,black)
+    repaint(canvas2)
+  
+    pic2=makePicture(pickAFile())
+    for pixel in pic2.getPixels():
+      x = getX(pixel)
+      y = getY(pixel)
+      color = getColor(pixel)
+      target = getPixelAt(canvas2, x, y)
+      setColor(target, color)
+    repaint(canvas2)
+    
+    
+  w = getWidth(pic2)
+  h = getHeight(pic2)
+  for x in range(0,w):
+    for y in range(0,h/3):
+      px = getPixel(pic2,x,y)
+      r = getGreen(px)
+      setGreen(px,r/2)
+    for y in range(h/2,h):
+      px = getPixel(pic2,x,y)
+      r = getGreen(px)
+      setGreen(px,r/2)
+      
+    pic2 = canvas2
+    repaint(canvas2)
+
