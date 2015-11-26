@@ -1,28 +1,43 @@
 import sys
 import time
 
+#class PaintBlack:
+# def __init__(self, pic2):
+
+def paintblack(canvas2):
+  pixels = getPixels(canvas2)
+  for i in pixels:
+    setColor(i,black)
+
 
 def start():
   #load image from file
-  canvasimage=makePicture("G:\Comp120\JES\Ship-image-structure\ship+biodomes.jpg")
-  show(canvasimage)
+  canvas2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\ship+biodomes.jpg")
+  show(canvas2)
   #get input from user
+  
   keypress = requestNumber("Press 1 for biodome or 2 for ship: ")
   #if the user entered 1 then zoom into the top section of the image
   #if the user enters 2(or anything else) zoom into the bottom part of the image
+  
   if keypress == 1:
+    paintblack(canvas2)
+    repaint(canvas2)
     EnlargeImageTopSection()
   elif keypress == 2:
+    paintblack(canvas2)
+    repaint(canvas2)
     EnlargeImageBottomSection()
-
 
 
 def EnlargeImageTopSection():
   #get the image and then make an empty image 
-  file=("G:\Comp120\JES\Ship-image-structure\ship+biodomes.jpg")
-  canvas = makeEmptyPicture(2652,1396)
-  canvas2 = makeEmptyPicture(2652,1396)
+  file=("C:\Users\Alastair\Desktop\Ship-image-structure\ship+biodomes.jpg")
   src=makePicture(file)
+  
+  canvas = makeEmptyPicture(1326,698)
+  canvas2 = makeEmptyPicture(1326,698)
+  
   
   #Display the image in the empty image
   canvas = src
@@ -32,22 +47,24 @@ def EnlargeImageTopSection():
   #get pixels at source Y
   #paste vertical pixels from pixel 100 to pixel 1000
   #scale up by 60%
-  
-  
-  
-  sourceX = 782
-  for targetX in range (10,2000):
-    sourceY = 292
-    for targetY in range(100,1000):
+ 
+  sourceX = 391
+  for targetX in range (10,1000):
+    sourceY = 146
+    for targetY in range(100,500):
       srcpx = getPixel(src,int(sourceX),int(sourceY))
       color = getColor(srcpx)
       setColor(getPixel(canvas2,targetX,targetY), color)
       sourceY = sourceY + 0.6
     sourceX = sourceX + 0.6
+  repaint(canvas2)
   
+  
+  paintblack(canvas2)
+  repaint(canvas2)
   
   #load the biodome image and display it on the canvas
-  pic2=makePicture("G:\Comp120\JES\Ship-image-structure\Biodome.jpg")
+  pic2=makePicture("C:\Users\Alastair\Desktop\Ship-image-structure\Biodome.jpg")
   for pixel in pic2.getPixels():
     x = getX(pixel)
     y = getY(pixel)
@@ -61,20 +78,16 @@ def EnlargeImageTopSection():
   #if the variable is equal to 2 paint the canvas black then load image from file and paint to canvas
   #if the variable is equal to 3 paint the canvas black then load image from file and paint to canvas
   #if the variable is equal to 4 paint the canvas black then load image from file and paint to canvas
-def paintblack(canvas2):
-  pixels = getPixels(canvas2)
-  for i in range(0*(len(pixels)/4),len(pixels)):
-    px = pixels[i]
-    setColor(px,black)
-  repaint(canvas2)
+
   
   
   keypress2 = requestNumber("Press 1-4 for ship images: ")
   if keypress2 == 1:
   
     paintblack(canvas2)
-  
-    pic2=makePicture(pickAFile())
+    repaint(canvas2)
+       
+    pic2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\Biodome\1.jpg")
     for pixel in pic2.getPixels():
       x = getX(pixel)
       y = getY(pixel)
@@ -86,13 +99,10 @@ def paintblack(canvas2):
   
   elif keypress2 == 2:
   
-    pixels = getPixels(canvas2)
-    for i in range(0*(len(pixels)/4),len(pixels)):
-      px = pixels[i]
-      setColor(px,black)
+    paintblack(canvas2)
     repaint(canvas2)
   
-    pic2=makePicture(pickAFile())
+    pic2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\Biodome\2.png")
     for pixel in pic2.getPixels():
       x = getX(pixel)
       y = getY(pixel)
@@ -103,13 +113,10 @@ def paintblack(canvas2):
   
   elif keypress2 == 3:
   
-    pixels = getPixels(canvas2)
-    for i in range(0*(len(pixels)/4),len(pixels)):
-      px = pixels[i]
-      setColor(px,black)
-    repaint(canvas2)
+    paintblack(canvas2)
+    repaint(canvas2) 
   
-    pic2=makePicture(pickAFile())
+    pic2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\Biodome\3.png")
     for pixel in pic2.getPixels():
       x = getX(pixel)
       y = getY(pixel)
@@ -118,14 +125,11 @@ def paintblack(canvas2):
       setColor(target, color)
     repaint(canvas2)
     
-  else:
-    pixels = getPixels(canvas2)
-    for i in range(0*(len(pixels)/4),len(pixels)):
-      px = pixels[i]
-      setColor(px,black)
+  elif keypress2 == 4:
+    paintblack(canvas2)
     repaint(canvas2)
   
-    pic2=makePicture(pickAFile())
+    pic2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\Biodome\4.png")
     for pixel in pic2.getPixels():
       x = getX(pixel)
       y = getY(pixel)
@@ -135,18 +139,18 @@ def paintblack(canvas2):
     repaint(canvas2)
 
 def EnlargeImageBottomSection():
-  file=("G:\Comp120\JES\Ship-image-structure\ship+biodomes.jpg")
-  canvas = makeEmptyPicture(2652,1396)
-  canvas2 = makeEmptyPicture(2652,1396)
+  file=(r"C:\Users\Alastair\Desktop\Ship-image-structure\ship+biodomes.jpg")
+  canvas = makeEmptyPicture(1326,698)
+  canvas2 = makeEmptyPicture(1326,698)
   src=makePicture(file)
   
   canvas = src
   #show(canvas)
   
-  sourceX = 160
-  for targetX in range(100,2000):
-    sourceY = 600
-    for targetY in range(100,1000):
+  sourceX = 80
+  for targetX in range(50,1000):
+    sourceY = 300
+    for targetY in range(50,500):
       srcpx = getPixel(src,int(sourceX),int(sourceY))
       color = getColor(srcpx)
       setColor(getPixel(canvas2,targetX,targetY), color)
@@ -155,18 +159,15 @@ def EnlargeImageBottomSection():
   repaint(canvas2)
   
   
-  pixels = getPixels(canvas2)
-  for i in range(0*(len(pixels)/4),len(pixels)):
-    px = pixels[i]
-    setColor(px,black)
+  paintblack(canvas2)
   repaint(canvas2)
   
-  pic2=makePicture("G:\Comp120\JES\Ship-image-structure\spaceship.jpg")
+  pic2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\spaceship.jpg")
   for pixel in pic2.getPixels():
     x = getX(pixel)
     y = getY(pixel)
     color = getColor(pixel)
-    target = getPixelAt(canvas2, x, y)
+    target = getPixelAt(canvas2, x, y) 
     setColor(target, color)
   repaint(canvas2)
   
@@ -174,13 +175,10 @@ def EnlargeImageBottomSection():
   
   if keypress2 == 1:
   
-    pixels = getPixels(canvas2)
-    for i in range(0*(len(pixels)/4),len(pixels)):
-      px = pixels[i]
-      setColor(px,black)
+    paintblack(canvas2)
     repaint(canvas2)
   
-    pic3=makePicture(pickAFile())
+    pic3=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\Ship\1.png")
     for pixel in pic3.getPixels():
       x = getX(pixel)
       y = getY(pixel)
@@ -193,13 +191,10 @@ def EnlargeImageBottomSection():
   
   elif keypress2 == 2:
   
-    pixels = getPixels(canvas2)
-    for i in range(0*(len(pixels)/4),len(pixels)):
-      px = pixels[i]
-      setColor(px,black)
+    paintblack(canvas2)
     repaint(canvas2)
   
-    pic2=makePicture(pickAFile())
+    pic2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\Ship\2.jpg")
     for pixel in pic2.getPixels():
       x = getX(pixel)
       y = getY(pixel)
@@ -210,13 +205,10 @@ def EnlargeImageBottomSection():
   
   elif keypress2 == 3:
   
-    pixels = getPixels(canvas2)
-    for i in range(0*(len(pixels)/4),len(pixels)):
-      px = pixels[i]
-      setColor(px,black)
+    paintblack(canvas2)
     repaint(canvas2)
     
-    pic2=makePicture(pickAFile())
+    pic2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\Ship\3.jpg")
     for pixel in pic2.getPixels():
       x = getX(pixel)
       y = getY(pixel)
@@ -233,13 +225,11 @@ def EnlargeImageBottomSection():
     repaint(canvas2)
     
   elif keypress2 == 4:
-    pixels = getPixels(canvas2)
-    for i in range(0*(len(pixels)/4),len(pixels)):
-      px = pixels[i]
-      setColor(px,black)
+    paintblack(canvas2)
     repaint(canvas2)
   
-    pic2=makePicture(pickAFile())
+    pic2=makePicture(r"C:\Users\Alastair\Desktop\Ship-image-structure\Ship\4.png")
+
     for pixel in pic2.getPixels():
       x = getX(pixel)
       y = getY(pixel)
@@ -249,18 +239,18 @@ def EnlargeImageBottomSection():
     repaint(canvas2)
     
     
-  w = getWidth(pic2)
-  h = getHeight(pic2)
-  for x in range(0,w):
-    for y in range(0,h/3):
-      px = getPixel(pic2,x,y)
-      r = getGreen(px)
-      setGreen(px,r/2)
-    for y in range(h/2,h):
-      px = getPixel(pic2,x,y)
-      r = getGreen(px)
-      setGreen(px,r/2)
+    w = getWidth(pic2)
+    h = getHeight(pic2)
+    for x in range(0,w):
+      for y in range(0,h/3):
+        px = getPixel(pic2,x,y)
+        r = getGreen(px)
+        setGreen(px,r/2)
+      for y in range(h/2,h):
+        px = getPixel(pic2,x,y)
+        r = getGreen(px)
+        setGreen(px,r/2)
       
-    pic2 = canvas2
-    repaint(canvas2)
+      pic2 = canvas2
+      repaint(canvas2)
 
