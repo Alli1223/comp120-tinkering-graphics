@@ -7,7 +7,7 @@ def paintblack(canvas2):
   pixels = getPixels(canvas2)
   for i in pixels:
     setColor(i,black)
-
+    
 
 def start():
   #load image from file
@@ -21,13 +21,14 @@ def start():
   
   if keypress == 1:
     paintblack(canvas2)
-    time.wait(10)
     repaint(canvas2)
     EnlargeImageTopSection()
+    time.sleep(2)
   elif keypress == 2:
     paintblack(canvas2)
     repaint(canvas2)
     EnlargeImageBottomSection()
+    time.sleep(2)
 
 
 def EnlargeImageTopSection():
@@ -64,14 +65,15 @@ def EnlargeImageTopSection():
   repaint(canvas2)
   
   #load the biodome image and display it on the canvas
-  pic2=makePicture(r".\Ship-image-structure\Biodome.jpg")
+  pic2=makePicture(r".\Ship-image-structure\biodome.jpg")
   for pixel in pic2.getPixels():
     x = getX(pixel)
     y = getY(pixel)
     color = getColor(pixel)
-    target = getPixelAt(canvas2, x, y)
+    target = getPixelAt(canvas2, x, y) 
     setColor(target, color)
   repaint(canvas2)
+  
   
   #get user number input and store in variable
   #if the variable is equal to 1 paint the canvas black then load image from file and paint to canvas
@@ -162,9 +164,8 @@ def EnlargeImageBottomSection():
   paintblack(canvas2)
   repaint(canvas2)
   
-  pic3=makePicture(r".\Ship-image-structure\spaceship.jpg")
-  explore(pic3)
-  for pixel in pic3.getPixels():
+  pic2=makePicture(r".\Ship-image-structure\spaceship.jpg")
+  for pixel in pic2.getPixels():
     x = getX(pixel)
     y = getY(pixel)
     color = getColor(pixel)
