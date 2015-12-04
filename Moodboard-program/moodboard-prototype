@@ -253,7 +253,7 @@ def pic4(canvas2):
     for x in range(0,w):
       for y in range(0,h):
         px = getPixel(pic2,x,y)
-        if px == black:
+        if px <= black:
           setColor(px,blue)
     
     pic2 = canvas2
