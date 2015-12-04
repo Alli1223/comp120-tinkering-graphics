@@ -74,6 +74,9 @@ def EnlargeImageTopSection():
     setColor(target, color)
   repaint(canvas2)
   
+
+    
+  
   
   #get user number input and store in variable
   #if the variable is equal to 1 paint the canvas black then load image from file and paint to canvas
@@ -204,6 +207,9 @@ def EnlargeImageBottomSection():
       target = getPixelAt(canvas2, x, y)
       setColor(target, color)
     repaint(canvas2)
+    
+    addRect(pict, 400, 600, 100, 200)
+  
   
   elif keypress2 == 3:
   
@@ -229,8 +235,9 @@ def EnlargeImageBottomSection():
   elif keypress2 == 4:
     paintblack(canvas2)
     repaint(canvas2)
-  
-    pic2=makePicture(r".\Ship-image-structure\Ship\4.png")
+
+def pic4(canvas2):
+    pic2=makePicture(r".\Ship-image-structure\Ship\4.jpg")
 
     for pixel in pic2.getPixels():
       x = getX(pixel)
@@ -240,19 +247,16 @@ def EnlargeImageBottomSection():
       setColor(target, color)
     repaint(canvas2)
     
-    
+    #WIP
     w = getWidth(pic2)
     h = getHeight(pic2)
     for x in range(0,w):
-      for y in range(0,h/3):
+      for y in range(0,h):
         px = getPixel(pic2,x,y)
-        r = getGreen(px)
-        setGreen(px,r/2)
-      for y in range(h/2,h):
-        px = getPixel(pic2,x,y)
-        r = getGreen(px)
-        setGreen(px,r/2)
-      
-      pic2 = canvas2
-      repaint(canvas2)
+        if px == black:
+          setColor(px,blue)
+    
+    pic2 = canvas2
+    repaint(pic2)
+    repaint(canvas2)
 
