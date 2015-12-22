@@ -16,6 +16,7 @@ def start():
   #get input from user
   
   keypress = requestNumber("Press 1 for biodome or 2 for ship: ")
+  
   #if the user entered 1 then zoom into the top section of the image
   #if the user enters 2(or anything else) zoom into the bottom part of the image
   
@@ -23,12 +24,12 @@ def start():
     paintblack(canvas2)
     repaint(canvas2)
     EnlargeImageTopSection()
-    time.sleep(2)
+    #time.sleep(2)
   elif keypress == 2:
     paintblack(canvas2)
     repaint(canvas2)
     EnlargeImageBottomSection()
-    time.sleep(2)
+    #time.sleep(2)
 
 
 def EnlargeImageTopSection():
@@ -174,6 +175,7 @@ def EnlargeImageBottomSection():
     color = getColor(pixel)
     target = getPixelAt(canvas2, x, y) 
     setColor(target, color)
+    pic2 = canvas2
   repaint(canvas2)
   
   keypress2 = requestNumber("Press 1-4 for ship images: ")
@@ -213,9 +215,9 @@ def EnlargeImageBottomSection():
   
   elif keypress2 == 3:
   
+
     paintblack(canvas2)
     repaint(canvas2)
-    
     pic2=makePicture(r".\Ship-image-structure\Ship\3.jpg")
     for pixel in pic2.getPixels():
       x = getX(pixel)
@@ -225,21 +227,29 @@ def EnlargeImageBottomSection():
       setColor(target, color)
     repaint(canvas2)
     
-    #reduceRed and increase red
-    for p in getPixels(pic2):
-      value = getRed(p)
-      setRed(p,value /4)
-    canvas2 = pic2
+    #reduceRed and then increase red in section
+    time.sleep(3)
+    sourceX = 422
+    for targetX in range (400,750):
+      sourceY = 231
+      for targetY in range(220,400):
+        px = getPixel(canvas2,int(sourceX),int(sourceY))
+        redpx = getRed(px)
+        setRed(getPixel(pic2,targetX,targetY), redpx /1.5) 
+        pic2 = canvas2
     repaint(canvas2)
+        
+        
+
     
   elif keypress2 == 4:
     paintblack(canvas2)
     repaint(canvas2)
+    
+    pic=makePicture(r".\Ship-image-structure\Ship\4-1.jpg")
+    bg=makePicture(r".\Ship-image-structure\Ship\4-4.png")
 
-def pic4(canvas2):
-    pic2=makePicture(r".\Ship-image-structure\Ship\4.jpg")
-
-    for pixel in pic2.getPixels():
+    for pixel in pic.getPixels():
       x = getX(pixel)
       y = getY(pixel)
       color = getColor(pixel)
@@ -247,16 +257,16 @@ def pic4(canvas2):
       setColor(target, color)
     repaint(canvas2)
     
-    #WIP
-    w = getWidth(pic2)
-    h = getHeight(pic2)
-    for x in range(0,w):
-      for y in range(0,h):
-        px = getPixel(pic2,x,y)
-        if px <= black:
-          setColor(px,blue)
-    
-    pic2 = canvas2
-    repaint(pic2)
+    for px in getPixels(bg):
+      
+      x = getX(px)
+      y = getY(px)
+      if (getRed(px) + getBlue(px) > getGreen (px)):
+        bgpx = getPixel(bg, x, y)
+        bgcol = getColor(bgpx)
+        target = getPixelAt(canvas2, x, y)
+        setColor(target,bgcol)
+
+      pic2 = canvas2
     repaint(canvas2)
 
