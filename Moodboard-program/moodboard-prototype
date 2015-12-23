@@ -2,7 +2,7 @@ import sys
 import time
 
 
-
+#function to set the canvas black
 def paintblack(canvas2):
   pixels = getPixels(canvas2)
   for i in pixels:
@@ -18,7 +18,7 @@ def start():
   keypress = requestNumber("Press 1 for biodome or 2 for ship: ")
   
   #if the user entered 1 then zoom into the top section of the image
-  #if the user enters 2(or anything else) zoom into the bottom part of the image
+  #if the user enters 2 zoom into the bottom part of the image
   
   if keypress == 1:
     paintblack(canvas2)
@@ -45,9 +45,9 @@ def EnlargeImageTopSection():
   canvas = src
   
   #get pixels at source X
-  #paste horizontal pixels from pixel 100 to pixel 2000
+  #paste horizontal pixels from pixel 10 to pixel 1000
   #get pixels at source Y
-  #paste vertical pixels from pixel 100 to pixel 1000
+  #paste vertical pixels from pixel 100 to pixel 5000
   #scale up by 60%
  
   sourceX = 391
@@ -101,7 +101,10 @@ def EnlargeImageTopSection():
       target = getPixelAt(canvas2, x, y)
       setColor(target, color)
     repaint(canvas2)
-  
+    
+    #Give the option to start from the beginning again after giving them time to view the image
+    time.sleep(5)
+    end()
   
   elif keypress2 == 2:
   
@@ -116,6 +119,10 @@ def EnlargeImageTopSection():
       target = getPixelAt(canvas2, x, y)
       setColor(target, color)
     repaint(canvas2)
+    
+    #Give the option to start from the beginning again after giving them time to view the image
+    time.sleep(5)
+    end()
   
   elif keypress2 == 3:
   
@@ -131,6 +138,10 @@ def EnlargeImageTopSection():
       setColor(target, color)
     repaint(canvas2)
     
+    #Give the option to start from the beginning again after giving them time to view the image
+    time.sleep(5)
+    end()
+    
   elif keypress2 == 4:
     paintblack(canvas2)
     repaint(canvas2)
@@ -143,6 +154,10 @@ def EnlargeImageTopSection():
       target = getPixelAt(canvas2, x, y)
       setColor(target, color)
     repaint(canvas2)
+    
+    #Give the option to start from the beginning again after giving them time to view the image
+    time.sleep(5)
+    end()
 
 def EnlargeImageBottomSection():
   file=(r".\Ship-image-structure\ship+biodomes.jpg")
@@ -194,13 +209,15 @@ def EnlargeImageBottomSection():
       setColor(target, color)
     repaint(canvas2)
   
-  
+    #Give the option to start from the beginning again after giving them time to view the image
+    time.sleep(5)
+    end()
   
   elif keypress2 == 2:
   
     paintblack(canvas2)
     repaint(canvas2)
-  
+    
     pic2=makePicture(r".\Ship-image-structure\Ship\2.jpg")
     for pixel in pic2.getPixels():
       x = getX(pixel)
@@ -208,10 +225,29 @@ def EnlargeImageBottomSection():
       color = getColor(pixel)
       target = getPixelAt(canvas2, x, y)
       setColor(target, color)
-    repaint(canvas2)
+      
+    canvas2 = pic2                                    #copy picture into canvas
+    startX = 180
+    startY = 280
+    endX= 200
+    endY = 500
+    lineColor = black
     
-    addRect(pict, 400, 600, 100, 200)
-  
+    for i in range(0, 170):
+      addLine(canvas2, startX, startY, endX, endY, lineColor)
+      
+      startX = startX +2
+      startY = startY -1
+      endX = endX +2
+      endY = endY -1
+      i = i +1
+      
+      repaint(canvas2)
+    
+    #Give the option to start from the beginning again after giving them time to view the image
+    #time.sleep(5)
+    end()
+    
   
   elif keypress2 == 3:
   
@@ -238,6 +274,10 @@ def EnlargeImageBottomSection():
         setRed(getPixel(pic2,targetX,targetY), redpx /1.5) 
         pic2 = canvas2
     repaint(canvas2)
+    
+    #Give the option to start from the beginning again after giving them time to view the image
+    time.sleep(5)
+    end()
         
         
 
@@ -269,4 +309,33 @@ def EnlargeImageBottomSection():
 
       pic2 = canvas2
     repaint(canvas2)
+    
+    #Give the option to start from the beginning again after giving them time to view the image
+    time.sleep(5)
+    end()
 
+#Ask the user if they would like to start the program again
+def end():
+  exitoption = requestString("Would you like to start again? (Y/N) ")
+  x = 0
+  if exitoption == "y":
+    start()
+  elif exitoption == "n":
+    pass
+  elif exitoption == "Y":
+    start()
+  elif exitoption == "N":
+    pass
+  elif exitoption == "yes":
+    start()
+  elif exitoption == "no":
+    pass
+  elif exitoption == "YES":
+    start()
+  elif exitoption == "NO":
+    pass
+  else:
+    pass
+    
+  
+    
