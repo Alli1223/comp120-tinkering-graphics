@@ -1,5 +1,6 @@
 import sys
 import time
+import random
 
 
 #function to set the canvas black
@@ -120,6 +121,22 @@ def EnlargeImageTopSection():
       setColor(target, color)
     repaint(canvas2)
     
+    #Edge dectection
+    for px in getPixels(canvas2):
+      x = getX(px)
+      y = getY(px)
+      if y < getHeight(canvas2)-1 and x < getWidth(canvas2)-1:
+        sum = getRed(px)+getGreen(px)+getBlue(px)
+        comparepx = getPixel(canvas2,x+1,y+1)
+        sum2 = getRed(comparepx)+getGreen(comparepx)+getBlue(comparepx)
+        diff = abs(sum2-sum)
+        newcolour = makeColor(diff,diff,diff)
+        setColor(px,newcolour)
+    repaint(canvas2)
+    
+      
+        
+    
     #Give the option to start from the beginning again after giving them time to view the image
     time.sleep(5)
     end()
@@ -138,6 +155,17 @@ def EnlargeImageTopSection():
       setColor(target, color)
     repaint(canvas2)
     
+    mirrorPoint = getWidth(pic2) / 2
+    width = getWidth(pic2)
+    for y in range(0,getHeight(pic2)):
+      for x in range(0,mirrorPoint):
+        leftPixel = getPixel(pic2,x,y)
+        rightPixel = getPixel(pic2,width - x - 1,y)
+        color = getColor(leftPixel)
+        setColor(rightPixel,color)
+        pic2 = canvas2
+    repaint(canvas2)
+    
     #Give the option to start from the beginning again after giving them time to view the image
     time.sleep(5)
     end()
@@ -154,6 +182,34 @@ def EnlargeImageTopSection():
       target = getPixelAt(canvas2, x, y)
       setColor(target, color)
     repaint(canvas2)
+    
+    startX = 0
+    startY = 0
+    endX= 20
+    endY = 30
+    lineColor = white
+    pic2 = canvas2    
+    
+    for i in range(0, 3000):
+      addLine(canvas2, startX, startY, endX, (endY), lineColor)
+      
+      if startY >= getHeight(canvas2):
+        startY = 0
+      elif startX >= getWidth(pic2):
+        startX = 0
+      elif endY >= getHeight(pic2):
+        endY = 20
+      elif endX >= getWidth(canvas2):
+        endX = 30
+                    
+      startX = startX +5
+      startY = startY +5
+      endX = endX +5
+      endY = endY +5
+      i = i +1
+      time.sleep(0.01)
+      
+      repaint(canvas2)
     
     #Give the option to start from the beginning again after giving them time to view the image
     time.sleep(5)
@@ -226,7 +282,7 @@ def EnlargeImageBottomSection():
       target = getPixelAt(canvas2, x, y)
       setColor(target, color)
       
-    canvas2 = pic2                                    #copy picture into canvas
+    canvas2 = pic2                                    
     startX = 180
     startY = 280
     endX= 200
@@ -235,12 +291,15 @@ def EnlargeImageBottomSection():
     
     for i in range(0, 170):
       addLine(canvas2, startX, startY, endX, endY, lineColor)
+      addLine(canvas2, startX+1, startY+1,endX+1, endY+1, lineColor)
+      addLine(canvas2, startX+2, startY+1,endX+2, endY+1, lineColor)
       
       startX = startX +2
       startY = startY -1
       endX = endX +2
       endY = endY -1
       i = i +1
+      time.sleep(0.2)
       
       repaint(canvas2)
     
@@ -336,6 +395,5 @@ def end():
     pass
   else:
     pass
-    
-  
+
     
