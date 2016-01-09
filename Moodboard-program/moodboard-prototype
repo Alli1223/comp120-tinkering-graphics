@@ -20,12 +20,15 @@ def start():
   
   #if the user entered 1 then zoom into the top section of the image
   #if the user enters 2 zoom into the bottom part of the image
+  #and paint the canvas back before and after the zoom
   
   if keypress == 1:
     paintblack(canvas)
     repaint(canvas)
     EnlargeImageTopSection()
     time.sleep(2)
+    paintblack(canvas)
+    repaint(canvas)
   elif keypress == 2:
     paintblack(canvas)
     repaint(canvas)
@@ -62,10 +65,6 @@ def EnlargeImageTopSection():
     sourceX = sourceX + 0.6
   repaint(canvas)
   
-  
-  paintblack(canvas)
-  repaint(canvas)
-  
   #load the biodome image and display it on the canvas
   pic2=makePicture(r".\Ship-image-structure\biodome.jpg")
   for pixel in pic2.getPixels():
@@ -75,27 +74,20 @@ def EnlargeImageTopSection():
     target = getPixelAt(canvas, x, y) 
     setColor(target, color)
   repaint(canvas)
-  
 
-    
-  
-  
   #get user number input and store in variable
   #if the variable is equal to 1 paint the canvas black then load image from file and paint to canvas
   #if the variable is equal to 2 paint the canvas black then load image from file and paint to canvas
   #if the variable is equal to 3 paint the canvas black then load image from file and paint to canvas
   #if the variable is equal to 4 paint the canvas black then load image from file and paint to canvas
-
-  
-  
   keypress2 = requestNumber("Press 1-4 for ship images: ")
   if keypress2 == 1:
   
-    paintblack(canvas)
+    paintblack(canvas)                                                #Sets the canvas black
     repaint(canvas)
        
-    pic2=makePicture(r".\Ship-image-structure\Biodome\1.jpg")
-    for pixel in pic2.getPixels():
+    pic=makePicture(r".\Ship-image-structure\Biodome\1.jpg")         #loads picture into memory
+    for pixel in pic.getPixels():
       x = getX(pixel)
       y = getY(pixel)
       color = getColor(pixel)
@@ -179,7 +171,8 @@ def EnlargeImageTopSection():
     #Give the option to start from the beginning again after giving them time to view the image
     time.sleep(5)
     end()
-    
+  
+  #run if the user enters the number 4
   elif keypress2 == 4:
     paintblack(canvas)
     repaint(canvas)
@@ -197,9 +190,10 @@ def EnlargeImageTopSection():
     startY = 0
     endX= 20
     endY = 30
-    lineColor = blue
+    lineColor = makeColor(200, 240,150)
     pic2 = canvas    
     
+    #draw a line across the image, icrementing the line location each iteration in the loop
     for i in range(0, 1500):
       addLine(canvas, startX, startY, endX, (endY), lineColor)
       
@@ -232,8 +226,8 @@ def EnlargeImageBottomSection():
   src=makePicture(file)
   
   startcanvas = src
-  #show(canvas)
   
+  #zoom into the bottom part of the image, values are used for an image with a resolution of 1326 by 698.
   sourceX = 80
   for targetX in range(50,1000):
     sourceY = 300
@@ -245,7 +239,7 @@ def EnlargeImageBottomSection():
     sourceX = sourceX + 0.6
   repaint(canvas)
   
-  
+  time.sleep(2)                                         #give the user time to view the image before loading the next image
   paintblack(canvas)
   repaint(canvas)
   
@@ -274,7 +268,19 @@ def EnlargeImageBottomSection():
       target = getPixelAt(canvas, x, y)
       setColor(target, color)
     repaint(canvas)
-  
+    
+    allpixels = getPixels(pic3)
+    for i in range(0, len(allpixels)/3):
+      pixel = allpixels[i]
+      setRed(pixel, 0)
+      setBlue(pixel, 0)
+      
+    for i in range(len(allpixels)/2, len(allpixels)):
+      pixel = allpixels[i]
+      setRed(pixel, 0)
+      setBlue(pixel, 0)
+    canvas = pic3
+    repaint(canvas)
     #Give the option to start from the beginning again after giving them time to view the image
     time.sleep(5)
     end()
@@ -405,5 +411,3 @@ def end():
     pass
   else:
     pass
-
-    
