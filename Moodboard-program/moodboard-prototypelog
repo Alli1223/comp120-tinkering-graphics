@@ -2200,4 +2200,13 @@
 <command_run time="Sat Jan 09 11:29:30 UTC 2016">start()></command_run>
 <menu_button time="Sat Jan 09 11:30:52 UTC 2016">Save Program</menu_button>
 <file_saved time="Sat Jan 09 11:30:52 UTC 2016">C:\Users\Alastair\Documents\GitHub\comp120-tinkering-graphics\Moodboard-program\moodboard-prototype</file_saved>
+<file_opened time="Mon Jan 11 10:54:52 UTC 2016">C:\Users\Alastair\Documents\GitHub\comp120-tinkering-graphics\Moodboard-program\moodboard-prototype</file_opened>
+<menu_button time="Mon Jan 11 10:54:54 UTC 2016">Load Program</menu_button>
+<command_run time="Mon Jan 11 10:54:59 UTC 2016">start()></command_run>
+<menu_button time="Mon Jan 11 10:55:31 UTC 2016">pickAFolder</menu_button>
+<menu_button time="Mon Jan 11 10:59:58 UTC 2016">Load Program</menu_button>
+<file_saved time="Mon Jan 11 10:59:59 UTC 2016">C:\Users\Alastair\Documents\GitHub\comp120-tinkering-graphics\Moodboard-program\moodboard-prototype</file_saved>
+</file_created>
+<menu_button time="Mon Jan 11 11:09:07 UTC 2016">Save Program</menu_button>
+<file_saved time="Mon Jan 11 11:09:07 UTC 2016">C:\Users\Alastair\Documents\GitHub\comp120-tinkering-graphics\Moodboard-program\moodboard-prototype</file_saved>
 </file_created>

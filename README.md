@@ -1,6 +1,19 @@
 # comp120-tinkering-graphics
 Python Code for Re-purposing Graphics Algorithms
 
+##Different Image effects
+###Ship
+1: Change tint of the plants
+2: Use drawing fucntions to animate the cargo bay door
+3: Change colour in part of the image
+4: Green screen affect
+
+###Biodomes
+1: Change colour in half of the image
+2: Edge Detection
+3: Mirror Image
+4: Draw lines on canvas
+
 ##Image sources:
 Main image:
 https://robertsspaceindustries.com/comm-link/transmission/14972-Research-Unbound-The-MISC-Endeavor
@@ -29,3 +42,4 @@ http://www.gamer.ru/system/attached_images/images/000/683/830/original/me3_war_r
 ###2-4
 http://firstfineartacademy.org/wp-content/gallery/assistant-teacher-gallery_1/Medical-Bay.jpg
 http://orig07.deviantart.net/5772/f/2012/222/3/7/combat_eva_suit__elite__by_longgi-d5akcga.jpg
+

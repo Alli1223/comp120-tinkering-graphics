@@ -1,6 +1,7 @@
 import sys
 import time
 import random
+import os
 
 
 #function to set the canvas black
@@ -12,6 +13,7 @@ def paintblack(canvas):
 
 def start():
   #load image from file
+  #Image folder needs to be located in the JES directory.
   canvas=makePicture(r".\Ship-image-structure\ship+biodomes.jpg")
   show(canvas)
   #get input from user
@@ -95,7 +97,7 @@ def EnlargeImageTopSection():
       setColor(target, color)
     repaint(canvas)
     
-    
+    #reduces color in area
     for p in getPixels(canvas):
       b = getBlue(p)
       g = getGreen(p)
@@ -157,6 +159,7 @@ def EnlargeImageTopSection():
       setColor(target, color)
     repaint(canvas)
     
+    #Mirror image effect
     mirrorPoint = getWidth(pic2) / 2
     width = getWidth(pic2)
     for y in range(0,getHeight(pic2)):
@@ -269,6 +272,7 @@ def EnlargeImageBottomSection():
       setColor(target, color)
     repaint(canvas)
     
+    #
     allpixels = getPixels(pic3)
     for i in range(0, len(allpixels)/3):
       pixel = allpixels[i]
