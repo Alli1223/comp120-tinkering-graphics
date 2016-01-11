@@ -3,16 +3,16 @@ Python Code for Re-purposing Graphics Algorithms
 
 ##Different Image effects
 ###Ship
-1: Change tint of the plants
-2: Use drawing fucntions to animate the cargo bay door
-3: Change colour in part of the image
-4: Green screen affect
+####1: Change tint of the plants
+####2: Use drawing fucntions to animate the cargo bay door
+####3: Change colour in part of the image
+####4: Green screen affect
 
 ###Biodomes
-1: Change colour in half of the image
-2: Edge Detection
-3: Mirror Image
-4: Draw lines on canvas
+####1: Change colour in half of the image
+####2: Edge Detection
+####3: Mirror Image
+####4: Draw lines on canvas
 
 ##Image sources:
 Main image:
