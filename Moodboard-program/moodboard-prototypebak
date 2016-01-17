@@ -3,7 +3,8 @@ import time
 import random
 import os
 
-
+#promts the user to set the media path to the location of the root folder which contains the images
+setMediaPath()
 #function to set the canvas black
 def paintblack(canvas):
   pixels = getPixels(canvas)
@@ -22,20 +23,19 @@ def start():
   
   #if the user entered 1 then zoom into the top section of the image
   #if the user enters 2 zoom into the bottom part of the image
-  #and paint the canvas back before and after the zoom
+  #and paint the canvas back before and after the zoom then give the user time to view the image
   
   if keypress == 1:
     paintblack(canvas)
     repaint(canvas)
     EnlargeImageTopSection()
-    time.sleep(2)
-    paintblack(canvas)
-    repaint(canvas)
+
+
   elif keypress == 2:
     paintblack(canvas)
     repaint(canvas)
     EnlargeImageBottomSection()
-    time.sleep(2)
+
 
 
 def EnlargeImageTopSection():
@@ -53,7 +53,7 @@ def EnlargeImageTopSection():
   #get pixels at source X
   #paste horizontal pixels from pixel 10 to pixel 1000
   #get pixels at source Y
-  #paste vertical pixels from pixel 100 to pixel 5000
+  #paste vertical pixels from pixel 100 to pixel 500
   #scale up by 60%
  
   sourceX = 391
@@ -67,9 +67,14 @@ def EnlargeImageTopSection():
     sourceX = sourceX + 0.6
   repaint(canvas)
   
+  #Waits 2 seconds, then paints canvas black
+  time.sleep(2)
+  paintblack(canvas)
+  repaint(canvas)
+  
   #load the biodome image and display it on the canvas
-  pic2=makePicture(r".\Ship-image-structure\biodome.jpg")
-  for pixel in pic2.getPixels():
+  pic=makePicture(r".\Ship-image-structure\biodome.jpg")
+  for pixel in pic.getPixels():
     x = getX(pixel)
     y = getY(pixel)
     color = getColor(pixel)
@@ -84,7 +89,6 @@ def EnlargeImageTopSection():
   #if the variable is equal to 4 paint the canvas black then load image from file and paint to canvas
   keypress2 = requestNumber("Press 1-4 for ship images: ")
   if keypress2 == 1:
-  
     paintblack(canvas)                                                #Sets the canvas black
     repaint(canvas)
        
@@ -97,7 +101,7 @@ def EnlargeImageTopSection():
       setColor(target, color)
     repaint(canvas)
     
-    #reduces color in area
+    #Changes the color of pixels if blue and green are less than 50 and green is greater than 50
     for p in getPixels(canvas):
       b = getBlue(p)
       g = getGreen(p)
@@ -112,12 +116,12 @@ def EnlargeImageTopSection():
     end()
   
   elif keypress2 == 2:
-  
     paintblack(canvas)
     repaint(canvas)
-  
-    pic2=makePicture(r".\Ship-image-structure\Biodome\2.png")
-    for pixel in pic2.getPixels():
+    
+    #Loads the new picture into variable pic
+    pic=makePicture(r".\Ship-image-structure\Biodome\2.png")
+    for pixel in pic.getPixels():
       x = getX(pixel)
       y = getY(pixel)
       color = getColor(pixel)
@@ -138,8 +142,6 @@ def EnlargeImageTopSection():
         setColor(px,newcolour)
     repaint(canvas)
     
-      
-        
     
     #Give the option to start from the beginning again after giving them time to view the image
     time.sleep(5)
@@ -150,8 +152,8 @@ def EnlargeImageTopSection():
     paintblack(canvas)
     repaint(canvas) 
   
-    pic2=makePicture(r".\Ship-image-structure\Biodome\3.png")
-    for pixel in pic2.getPixels():
+    pic=makePicture(r".\Ship-image-structure\Biodome\3.png")
+    for pixel in pic.getPixels():
       x = getX(pixel)
       y = getY(pixel)
       color = getColor(pixel)
@@ -160,15 +162,15 @@ def EnlargeImageTopSection():
     repaint(canvas)
     
     #Mirror image effect
-    mirrorPoint = getWidth(pic2) / 2
-    width = getWidth(pic2)
-    for y in range(0,getHeight(pic2)):
+    mirrorPoint = getWidth(pic) / 2
+    width = getWidth(pic)
+    for y in range(0,getHeight(pic)):
       for x in range(0,mirrorPoint):
-        leftPixel = getPixel(pic2,x,y)
-        rightPixel = getPixel(pic2,width - x - 1,y)
+        leftPixel = getPixel(pic,x,y)
+        rightPixel = getPixel(pic,width - x - 1,y)
         color = getColor(leftPixel)
         setColor(rightPixel,color)
-        pic2 = canvas
+        pic = canvas
     repaint(canvas)
     
     #Give the option to start from the beginning again after giving them time to view the image
@@ -180,8 +182,8 @@ def EnlargeImageTopSection():
     paintblack(canvas)
     repaint(canvas)
   
-    pic2=makePicture(r".\Ship-image-structure\Biodome\4.png")
-    for pixel in pic2.getPixels():
+    pic=makePicture(r".\Ship-image-structure\Biodome\4.png")
+    for pixel in pic.getPixels():
       x = getX(pixel)
       y = getY(pixel)
       color = getColor(pixel)
@@ -194,27 +196,29 @@ def EnlargeImageTopSection():
     endX= 20
     endY = 30
     lineColor = makeColor(200, 240,150)
-    pic2 = canvas    
+    pic = canvas    
     
     #draw a line across the image, icrementing the line location each iteration in the loop
-    for i in range(0, 1500):
+    #then resetting the line location if it leaves the screen
+    for i in range(0, 1000):
       addLine(canvas, startX, startY, endX, (endY), lineColor)
       
       if startY >= getHeight(canvas):
         startY = 0
-      elif startX >= getWidth(pic2):
+      elif startX >= getWidth(canvas):
         startX = 0
-      elif endY >= getHeight(pic2):
-        endY = 20
+      elif endY >= getHeight(canvas):
+        endY = 600
       elif endX >= getWidth(canvas):
-        endX = 30
-                    
-      startX = startX +5
-      startY = startY +5
-      endX = endX +5
-      endY = endY +5
-      i = i +30
-      time.sleep(0.01)
+        endX = 200
+      
+                                  
+      startX = startX +10
+      startY = startY +10
+      endX = endX +10
+      endY = endY +10
+      i = i +1
+      time.sleep(0.05)                          #sleep for  5 miliseconds every cycle so that it takes time to draw the lines
       
       repaint(canvas)
     
@@ -223,19 +227,18 @@ def EnlargeImageTopSection():
     end()
 
 def EnlargeImageBottomSection():
+  #This function zooms into the bottom section of the image which contains the ship.
   file=(r".\Ship-image-structure\ship+biodomes.jpg")
   startcanvas = makeEmptyPicture(1326,698)
   canvas = makeEmptyPicture(1326,698)
   src=makePicture(file)
-  
-  startcanvas = src
   
   #zoom into the bottom part of the image, values are used for an image with a resolution of 1326 by 698.
   sourceX = 80
   for targetX in range(50,1000):
     sourceY = 300
     for targetY in range(50,500):
-      srcpx = getPixel(src,int(sourceX),int(sourceY))
+      srcpx = getPixel(startcanvas,int(sourceX),int(sourceY))
       color = getColor(srcpx)
       setColor(getPixel(canvas,targetX,targetY), color)
       sourceY = sourceY + 0.6
@@ -246,25 +249,26 @@ def EnlargeImageBottomSection():
   paintblack(canvas)
   repaint(canvas)
   
-  pic2=makePicture(r".\Ship-image-structure\spaceship.jpg")
-  for pixel in pic2.getPixels():
+  pic=makePicture(r".\Ship-image-structure\spaceship.jpg")
+  for pixel in pic.getPixels():
     x = getX(pixel)
     y = getY(pixel)
     color = getColor(pixel)
     target = getPixelAt(canvas, x, y) 
     setColor(target, color)
-    pic2 = canvas
+    pic = canvas
   repaint(canvas)
   
   keypress2 = requestNumber("Press 1-4 for ship images: ")
-  
   if keypress2 == 1:
   
+    #paint canvas black
     paintblack(canvas)
     repaint(canvas)
   
-    pic3=makePicture(r".\Ship-image-structure\Ship\1.png")
-    for pixel in pic3.getPixels():
+    #load picture into variable pic
+    pic=makePicture(r".\Ship-image-structure\Ship\1.png")
+    for pixel in pic.getPixels():
       x = getX(pixel)
       y = getY(pixel)
       color = getColor(pixel)
@@ -272,18 +276,21 @@ def EnlargeImageBottomSection():
       setColor(target, color)
     repaint(canvas)
     
-    #
-    allpixels = getPixels(pic3)
+    #get the value for the pixels in the top 3rd of the image and set red and blue to 0
+    allpixels = getPixels(pic)
     for i in range(0, len(allpixels)/3):
       pixel = allpixels[i]
       setRed(pixel, 0)
       setBlue(pixel, 0)
-      
+    
+    #get the value for the pixels in the bottom half of the image and set red and blue to 0
     for i in range(len(allpixels)/2, len(allpixels)):
       pixel = allpixels[i]
       setRed(pixel, 0)
       setBlue(pixel, 0)
-    canvas = pic3
+      
+    #set the values of pic to canvas
+    canvas = pic                                                
     repaint(canvas)
     #Give the option to start from the beginning again after giving them time to view the image
     time.sleep(5)
@@ -294,15 +301,15 @@ def EnlargeImageBottomSection():
     paintblack(canvas)
     repaint(canvas)
     
-    pic2=makePicture(r".\Ship-image-structure\Ship\2.jpg")
-    for pixel in pic2.getPixels():
+    pic=makePicture(r".\Ship-image-structure\Ship\2.jpg")
+    for pixel in pic.getPixels():
       x = getX(pixel)
       y = getY(pixel)
       color = getColor(pixel)
       target = getPixelAt(canvas, x, y)
       setColor(target, color)
       
-    canvas = pic2                                    
+    canvas = pic                                    
     startX = 180
     startY = 280
     endX= 200
@@ -319,22 +326,22 @@ def EnlargeImageBottomSection():
       endX = endX +2
       endY = endY -1
       i = i +1
-      time.sleep(0.2)
+      time.sleep(0.2)                    #wait for 0.2 seconds each cycle so it looks like the door closes slowly
       
       repaint(canvas)
     
     #Give the option to start from the beginning again after giving them time to view the image
-    #time.sleep(5)
+    time.sleep(5)
     end()
     
   
   elif keypress2 == 3:
-  
-
     paintblack(canvas)
     repaint(canvas)
-    pic2=makePicture(r".\Ship-image-structure\Ship\3.jpg")
-    for pixel in pic2.getPixels():
+    
+    
+    pic=makePicture(r".\Ship-image-structure\Ship\3.jpg")
+    for pixel in pic.getPixels():
       x = getX(pixel)
       y = getY(pixel)
       color = getColor(pixel)
@@ -342,16 +349,16 @@ def EnlargeImageBottomSection():
       setColor(target, color)
     repaint(canvas)
     
-    #reduceRed and then increase red in section
-    time.sleep(3)
+    #reduceRed red in middle section
+    #These values corispond with location of the middle section of the image
     sourceX = 422
     for targetX in range (400,750):
       sourceY = 231
       for targetY in range(220,400):
         px = getPixel(canvas,int(sourceX),int(sourceY))
         redpx = getRed(px)
-        setRed(getPixel(pic2,targetX,targetY), redpx /1.5) 
-        pic2 = canvas
+        setRed(getPixel(pic,targetX,targetY), redpx /1.5) 
+        pic = canvas
     repaint(canvas)
     
     #Give the option to start from the beginning again after giving them time to view the image
@@ -360,7 +367,7 @@ def EnlargeImageBottomSection():
         
         
 
-    
+  
   elif keypress2 == 4:
     paintblack(canvas)
     repaint(canvas)
@@ -376,17 +383,17 @@ def EnlargeImageBottomSection():
       setColor(target, color)
     repaint(canvas)
     
+    #Greenscreen image effect
     for px in getPixels(bg):
-      
       x = getX(px)
       y = getY(px)
-      if (getRed(px) + getBlue(px) > getGreen (px)):
+      if (getRed(px) + getBlue(px) > getGreen (px)):#if red and blue is greater than the green put those pixels in to the target image 
         bgpx = getPixel(bg, x, y)
         bgcol = getColor(bgpx)
         target = getPixelAt(canvas, x, y)
         setColor(target,bgcol)
 
-      pic2 = canvas
+      pic = canvas
     repaint(canvas)
     
     #Give the option to start from the beginning again after giving them time to view the image
@@ -394,6 +401,8 @@ def EnlargeImageBottomSection():
     end()
 
 #Ask the user if they would like to start the program again
+#if the user enters yes or y start from the beginning
+#else end the program
 def end():
   exitoption = requestString("Would you like to start again? (Y/N) ")
   x = 0
